@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   View,
   Text,
@@ -6,64 +6,77 @@ import {
   Image,
   TouchableOpacity,
   FlatList,
+  Modal,
+  TextInput,
 } from "react-native";
 import { Ionicons, Feather } from "@expo/vector-icons";
-// import ContactScreen from "../Contact/ContactUsScreen"; // Import the ContactScreen component
+import ContactScreen from "./Contact/ContactScreen";
+import { ProfileContext } from "./Edit/ProfileContext";
 
-const profileOptions = [
+interface ProfileOption {
+  id: string;
+  label: string;
+  icon: string;
+}
+
+interface ProfileScreenProps {
+  navigation: any;
+}
+
+const profileOptions: ProfileOption[] = [
   { id: "1", label: "Settings", icon: "settings-outline" },
   { id: "2", label: "Portfolio Build", icon: "clipboard-outline" },
   { id: "3", label: "Address", icon: "location-outline" },
   { id: "4", label: "Change Password", icon: "lock-outline" },
-  { id: "5", label: "Contact Us", icon: "call-outline" }, // This will open ContactScreen modal
+  { id: "5", label: "Contact Us", icon: "call-outline" },
   { id: "6", label: "Help & Support", icon: "help-circle" },
   { id: "7", label: "Log out", icon: "log-out" },
 ];
 
-const ProfileScreen = () => {
+const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [isEditModalVisible, setEditModalVisible] = useState(false);
+  const [newName, setNewName] = useState("");
+  const { profileName, setProfileName } = useContext(ProfileContext);
 
-  const renderProfileOption = ({ item }: any) => {
-    const handleOptionPress = () => {
-      if (item.label === "Contact Us") {
-        setModalVisible(true); // Show the contact form modal
-      } else {
-        // Handle other options here
-        console.log(`${item.label} clicked`);
-      }
-    };
+  const handleOptionPress = (label: string) => {
+    if (label === "Contact Us") {
+      setModalVisible(true);
+    } else if (label === "Edit Profile") {
+      setNewName(profileName);
+      setEditModalVisible(true);
+    } else {
+      console.log(`${label} clicked`);
+    }
+  };
 
-    return (
-      <TouchableOpacity
-        style={styles.optionContainer}
-        onPress={handleOptionPress}
-      >
-        <View style={styles.optionContent}>
-          <Ionicons name={item.icon} size={24} color="#333" />
-          <Text style={styles.optionText}>{item.label}</Text>
-        </View>
-        <Feather name="chevron-right" size={24} color="#333" />
-      </TouchableOpacity>
-    );
+  const handleSaveProfile = () => {
+    setProfileName(newName);
+    setEditModalVisible(false);
   };
 
   return (
     <View style={styles.container}>
       {/* Profile Header */}
       <View style={styles.header}>
-        <Ionicons name="arrow-back-outline" size={24} color="#333" />
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Ionicons name="arrow-back-outline" size={24} color="#333" />
+        </TouchableOpacity>
         <Text style={styles.headerTitle}>Profile</Text>
       </View>
 
       {/* Profile Info */}
       <View style={styles.profileInfo}>
         <Image
-          source={require("../../../../assets/profile.png")} // Replace with actual image URL
+          source={require("../../../../assets/profile.png")}
           style={styles.profileImage}
         />
-        <Text style={styles.profileName}>Guest</Text>
+        <Text style={styles.profileName}>{profileName}</Text>
         <Text style={styles.profileUsername}>@guest</Text>
-        <TouchableOpacity style={styles.editProfileButton}>
+        <TouchableOpacity
+          style={styles.editProfileButton}
+          onPress={() => setEditModalVisible(true)}
+        >
           <Text style={styles.editProfileText}>Edit Profile</Text>
         </TouchableOpacity>
       </View>
@@ -72,15 +85,53 @@ const ProfileScreen = () => {
       <FlatList
         data={profileOptions}
         keyExtractor={(item) => item.id}
-        renderItem={renderProfileOption}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            style={styles.optionContainer}
+            onPress={() => handleOptionPress(item.label)}
+          >
+            <View style={styles.optionContent}>
+              <Ionicons name={item.icon} size={24} color="#333" />
+              <Text style={styles.optionText}>{item.label}</Text>
+            </View>
+            <Feather name="chevron-right" size={24} color="#333" />
+          </TouchableOpacity>
+        )}
         style={styles.optionsList}
       />
 
       {/* Render Contact Screen Modal */}
-      {/* <ContactScreen
+      <ContactScreen
         visible={modalVisible}
         onClose={() => setModalVisible(false)}
-      /> */}
+      />
+
+      {/* Edit Profile Modal */}
+      <Modal visible={isEditModalVisible} transparent animationType="slide">
+        <View style={styles.editModalContainer}>
+          <View style={styles.editModalContent}>
+            <Text style={styles.editModalTitle}>Edit Profile</Text>
+            <TextInput
+              style={styles.editInput}
+              placeholder="Enter new name"
+              value={newName}
+              onChangeText={setNewName}
+            />
+            <TouchableOpacity
+              style={styles.saveButton}
+              onPress={handleSaveProfile}
+            >
+              <Text style={styles.saveButtonText}>Save</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.cancelButton}
+              onPress={() => setEditModalVisible(false)}
+            >
+              <Text style={styles.cancelButtonText}>Cancel</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -159,6 +210,55 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#333",
     marginLeft: 10,
+  },
+  editModalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.5)",
+  },
+  editModalContent: {
+    width: "80%",
+    backgroundColor: "#FFF",
+    padding: 20,
+    borderRadius: 10,
+    alignItems: "center",
+  },
+  editModalTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 15,
+  },
+  editInput: {
+    width: "100%",
+    borderColor: "#CCC",
+    borderWidth: 1,
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 15,
+  },
+  saveButton: {
+    backgroundColor: "#333",
+    borderRadius: 5,
+    padding: 10,
+    width: "100%",
+    alignItems: "center",
+  },
+  saveButtonText: {
+    color: "#FFF",
+    fontWeight: "bold",
+  },
+  cancelButton: {
+    backgroundColor: "#CCC",
+    borderRadius: 5,
+    padding: 10,
+    width: "100%",
+    alignItems: "center",
+    marginTop: 10,
+  },
+  cancelButtonText: {
+    color: "#333",
+    fontWeight: "bold",
   },
 });
 

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-
-const Header = ({ navigation }: any) => {
+import { ProfileContext } from "../Profile/Edit/ProfileContext";
+const Header: React.FC<{ navigation: any }> = ({ navigation }) => {
+  const { profileName } = useContext(ProfileContext); // Access profileName from context
   return (
     <View style={styles.header}>
       {/* User Profile */}
@@ -13,7 +14,7 @@ const Header = ({ navigation }: any) => {
         />
         <View>
           <Text style={styles.greeting}>Good Morning,</Text>
-          <Text style={styles.userName}>Guest</Text>
+          <Text style={styles.userName}>{profileName}</Text>
         </View>
       </View>
 
