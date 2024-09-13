@@ -4,8 +4,8 @@ import Header from "./HomeScreen/Header";
 // import SearchBar from "../Components/SearchBar";
 import HighlightedEvent from "./HomeScreen/HighlightedEvent";
 import Internships from "./HomeScreen/Internship/Internship";
-// import Testimonials from "../Components/Testinomials";
-// import NewInternship from "../Components/New Internship/NewInternship"; // Import the new component
+import Testimonials from "./HomeScreen/Testinomials/Testinomials";
+import NewInternship from "./HomeScreen/Internship/New Internship/NewInternship"; // Import the new component
 
 const HomeScreen = ({ navigation }: any) => {
   return (
@@ -14,8 +14,8 @@ const HomeScreen = ({ navigation }: any) => {
       {/* <SearchBar /> */}
       <HighlightedEvent />
       <Internships />
-      {/* <NewInternship />
-      <Testimonials /> */}
+      <NewInternship />
+      <Testimonials />
     </ScrollView>
   );
 };
