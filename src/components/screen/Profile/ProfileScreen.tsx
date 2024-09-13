@@ -27,10 +27,10 @@ const profileOptions: ProfileOption[] = [
   { id: "1", label: "Settings", icon: "settings-outline" },
   { id: "2", label: "Portfolio Build", icon: "clipboard-outline" },
   { id: "3", label: "Address", icon: "location-outline" },
-  { id: "4", label: "Change Password", icon: "lock-outline" },
-  { id: "5", label: "Contact Us", icon: "call-outline" },
-  { id: "6", label: "Help & Support", icon: "help-circle" },
-  { id: "7", label: "Log out", icon: "log-out" },
+
+  { id: "4", label: "Contact Us", icon: "call-outline" },
+  { id: "5", label: "Help & Support", icon: "help-circle" },
+  { id: "6", label: "Log out", icon: "log-out" },
 ];
 
 const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
@@ -45,6 +45,8 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
     } else if (label === "Edit Profile") {
       setNewName(profileName);
       setEditModalVisible(true);
+    } else if (label === "Settings") {
+      navigation.navigate("SettingsScreen");
     } else {
       console.log(`${label} clicked`);
     }
