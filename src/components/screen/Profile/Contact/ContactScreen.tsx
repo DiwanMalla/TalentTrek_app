@@ -9,9 +9,11 @@ import {
   ImageBackground,
   Image,
   ScrollView,
+  Linking,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { BlurView } from "expo-blur";
+import MapView, { Marker } from "react-native-maps";
 
 const ContactScreen = ({ visible, onClose }) => {
   return (
@@ -25,46 +27,69 @@ const ContactScreen = ({ visible, onClose }) => {
             </TouchableOpacity>
 
             {/* Header */}
-            <Text style={styles.modalTitle}>GET IN TOUCH</Text>
-            <Text style={styles.modalSubtitle}>
-              24/7 We will answer your questions and problems
-            </Text>
+            <Text style={styles.modalTitle}>Contact Us</Text>
 
-            {/* First and Last Name in one row */}
-            <View style={styles.inputRow}>
+            {/* Contact Form */}
+            <View style={styles.formContainer}>
               <TextInput
-                style={[styles.input, styles.halfWidth]}
-                placeholder="First Name"
+                style={styles.input}
+                placeholder="Name"
+                placeholderTextColor="#000"
               />
               <TextInput
-                style={[styles.input, styles.halfWidth]}
-                placeholder="Last Name"
+                style={styles.input}
+                placeholder="Email"
+                placeholderTextColor="#000"
               />
+              <TextInput
+                style={styles.input}
+                placeholder="Subject"
+                placeholderTextColor="#000"
+              />
+              <TextInput
+                style={[styles.input, styles.textArea]}
+                placeholder="Message"
+                placeholderTextColor="#000"
+                multiline
+              />
+              {/* Submit Button */}
+              <TouchableOpacity
+                style={styles.sendButton}
+                onPress={() => {
+                  alert("Submitted");
+                  onClose(); // Close the modal after the alert
+                }}
+              >
+                <Text style={styles.sendButtonText}>Send</Text>
+              </TouchableOpacity>
             </View>
 
-            {/* Email and Phone Inputs */}
-            <TextInput style={styles.input} placeholder="Email" />
-            <TextInput style={styles.input} placeholder="Phone" />
+            {/* Contact Details */}
+            <View style={styles.contactDetails}>
+              <Text style={styles.detailTitle}>Contact Details</Text>
+              <Text style={styles.detail}>Email: example@example.com</Text>
+              <Text style={styles.detail}>Phone: +1-234-567-890</Text>
+              <Text style={styles.detail}>
+                Address: 168 Sussex Street, NSW, Sydney
+              </Text>
+            </View>
 
-            {/* Describe your issue Input */}
-            <TextInput
-              style={[styles.input, styles.textArea]}
-              placeholder="Describe your issue"
-              multiline
-            />
-
-            {/* Send Button */}
-            <TouchableOpacity
-              style={styles.sendButton}
-              onPress={() => {
-                alert("Submitted");
-                onClose(); // Close the modal after the alert
+            {/* Location Map */}
+            <MapView
+              style={styles.map}
+              initialRegion={{
+                latitude: -33.86785,
+                longitude: 151.20732,
+                latitudeDelta: 0.005, // Decrease for a closer zoom
+                longitudeDelta: 0.015, // Decrease for a closer zoom
               }}
             >
-              <Text style={styles.sendButtonText}>Send</Text>
-            </TouchableOpacity>
+              <Marker
+                coordinate={{ latitude: -33.86785, longitude: 151.20732 }}
+              />
+            </MapView>
 
-            {/* Bottom Section with Logo, Slogan, and Social Media */}
+            {/* Social Media Links */}
             <View style={styles.bottomSection}>
               <ImageBackground
                 source={require("../../../../../assets/banner.jpg")}
@@ -72,26 +97,38 @@ const ContactScreen = ({ visible, onClose }) => {
               >
                 {/* Logo above the slogan */}
                 <Image
-                  source={require("../../../../../assets/logo.jpeg")} // Add your logo image path here
+                  source={require("../../../../../assets/logo.jpeg")}
                   style={styles.logo}
                 />
 
                 <Text style={styles.companySlogan}>
-                  Bridging gap between students and company
+                  Bridging the gap between students and companies
                 </Text>
 
                 {/* Social Media Icons */}
                 <View style={styles.socialMediaContainer}>
-                  <TouchableOpacity style={styles.socialButton}>
+                  <TouchableOpacity
+                    style={styles.socialButton}
+                    onPress={() => Linking.openURL("https://twitter.com")}
+                  >
                     <Ionicons name="logo-twitter" size={24} color="#1DA1F2" />
                   </TouchableOpacity>
-                  <TouchableOpacity style={[styles.socialButton]}>
+                  <TouchableOpacity
+                    style={styles.socialButton}
+                    onPress={() => Linking.openURL("https://instagram.com")}
+                  >
                     <Ionicons name="logo-instagram" size={24} color="#E1306C" />
                   </TouchableOpacity>
-                  <TouchableOpacity style={styles.socialButton}>
+                  <TouchableOpacity
+                    style={styles.socialButton}
+                    onPress={() => Linking.openURL("https://linkedin.com")}
+                  >
                     <Ionicons name="logo-linkedin" size={24} color="#0077B5" />
                   </TouchableOpacity>
-                  <TouchableOpacity style={styles.socialButton}>
+                  <TouchableOpacity
+                    style={styles.socialButton}
+                    onPress={() => Linking.openURL("https://facebook.com")}
+                  >
                     <Ionicons name="logo-facebook" size={24} color="#1877F2" />
                   </TouchableOpacity>
                 </View>
@@ -133,19 +170,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 10,
   },
-  modalSubtitle: {
-    fontSize: 14,
-    color: "gray",
-    marginBottom: 20,
-    textAlign: "center",
-  },
-  inputRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+  formContainer: {
     width: "100%",
-  },
-  halfWidth: {
-    width: "48%",
   },
   input: {
     width: "100%",
@@ -169,9 +195,27 @@ const styles = StyleSheet.create({
     color: "#FFF",
     fontSize: 16,
   },
+  contactDetails: {
+    width: "100%",
+    marginVertical: 20,
+  },
+  detailTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+  detail: {
+    fontSize: 14,
+    marginBottom: 5,
+  },
+  map: {
+    width: "100%",
+    height: 200,
+    borderRadius: 10,
+    marginVertical: 20,
+  },
   bottomSection: {
     width: "100%",
-    marginTop: 30,
     justifyContent: "center",
     alignItems: "center",
   },

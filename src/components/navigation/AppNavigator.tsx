@@ -16,6 +16,8 @@ import InternshipDetails from "../screen/HomeScreen/Internship/Intership Details
 import EventsScreen from "../screen/Tab Screen/EventsScreen";
 import AllInternships from "../screen/HomeScreen/Internship/All Internship/ShowAllInternship";
 import SettingsScreen from "../screen/Profile/Profile Tab/SettingScreen";
+import PortfolioScreen from "../screen/Profile/Profile Tab/PortfolioBuild/PortfolioScreen";
+import AboutUsScreen from "../screen/Profile/Profile Tab/About Us/AboutUs";
 // Define types for the Stack Navigator
 type RootStackParamList = {
   LandingScreen: undefined;
@@ -123,7 +125,17 @@ export default function AppNavigator() {
         <Stack.Screen
           name="SettingsScreen"
           component={SettingsScreen}
-          options={{ headerShown: true, title: "Setting" }}
+          options={{ headerShown: true, title: "Internship Details" }}
+        />
+        <Stack.Screen
+          name="PortfolioScreen"
+          component={PortfolioScreen}
+          options={{ headerShown: true, title: "Build Portfolio" }}
+        />
+        <Stack.Screen
+          name="AboutUsScreen"
+          component={AboutUsScreen}
+          options={{ headerShown: true, title: "About US" }}
         />
       </Stack.Navigator>
     </NavigationContainer>
