@@ -5,15 +5,15 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Ionicons } from "@expo/vector-icons"; // Make sure to install react-native-vector-icons
 
-// import HomeScreen from "../screens/HomeScreen";
-// import RecommendedScreen from "../screens/RecommendScreen";
-// import ProfileScreen from "../screens/Profile/ProfileScreen";
-// import MyJobsScreen from "../screens/MyJobsScreen";
+import HomeScreen from "../screen/HomeScreen";
+import RecommendedScreen from "../screen/Tab Screen/RecommendScreen";
+import ProfileScreen from "../screen/Profile/ProfileScreen";
+import MyJobsScreen from "../screen/Tab Screen/MyJobsScreen";
 import LandingPage from "../screen/LandingScreen";
 import LoginScreen from "../screen/Authorized Screen/LogInScreen";
 import SignupScreen from "../screen/Authorized Screen/SignUpScreen";
 // import InternshipDetails from "../Components/Internship/InternshipDetails";
-// import EventsScreen from "../screens/Event/EventScreen";
+import EventsScreen from "../screen/Tab Screen/EventsScreen";
 // import ShowAllInternnship from "../Components/Internship/AllInternnship/ShowAllInternnship";
 
 // Define types for the Stack Navigator
@@ -30,59 +30,59 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator<RootStackParamList>();
 
 // Main Tab Navigator for Home, Recommended, My Jobs, Profile
-// function MainTabNavigator() {
-//   return (
-//     <Tab.Navigator
-//       screenOptions={({ route }) => ({
-//         tabBarIcon: ({ focused, color, size }) => {
-//           let iconName: keyof typeof Ionicons.glyphMap = "home";
+function MainTabNavigator() {
+  return (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName: keyof typeof Ionicons.glyphMap = "home";
 
-//           if (route.name === "Home") {
-//             iconName = focused ? "home" : "home-outline";
-//           } else if (route.name === "Recommended") {
-//             iconName = focused ? "star" : "star-outline";
-//           } else if (route.name === "Profile") {
-//             iconName = focused ? "person" : "person-outline";
-//           } else if (route.name === "My Jobs") {
-//             iconName = focused ? "briefcase" : "briefcase-outline";
-//           } else if (route.name === "Events") {
-//             iconName = focused ? "calendar" : "calendar-outline";
-//           }
+          if (route.name === "Home") {
+            iconName = focused ? "home" : "home-outline";
+          } else if (route.name === "Recommended") {
+            iconName = focused ? "star" : "star-outline";
+          } else if (route.name === "Profile") {
+            iconName = focused ? "person" : "person-outline";
+          } else if (route.name === "My Jobs") {
+            iconName = focused ? "briefcase" : "briefcase-outline";
+          } else if (route.name === "Events") {
+            iconName = focused ? "calendar" : "calendar-outline";
+          }
 
-//           return <Ionicons name={iconName} size={size} color={color} />;
-//         },
-//         tabBarActiveTintColor: "#4CAF50",
-//         tabBarInactiveTintColor: "gray",
-//       })}
-//     >
-//       <Tab.Screen
-//         name="Home"
-//         component={HomeScreen}
-//         options={{ headerShown: false }}
-//       />
-//       <Tab.Screen
-//         name="Recommended"
-//         component={RecommendedScreen}
-//         options={{ headerShown: false }}
-//       />
-//       <Tab.Screen
-//         name="My Jobs"
-//         component={MyJobsScreen}
-//         options={{ headerShown: false }}
-//       />
-//       <Tab.Screen
-//         name="Events"
-//         component={EventsScreen}
-//         options={{ headerShown: false }}
-//       />
-//       <Tab.Screen
-//         name="Profile"
-//         component={ProfileScreen}
-//         options={{ headerShown: false }}
-//       />
-//     </Tab.Navigator>
-//   );
-// }
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+        tabBarActiveTintColor: "#4CAF50",
+        tabBarInactiveTintColor: "gray",
+      })}
+    >
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="Recommended"
+        component={RecommendedScreen}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="My Jobs"
+        component={MyJobsScreen}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="Events"
+        component={EventsScreen}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{ headerShown: false }}
+      />
+    </Tab.Navigator>
+  );
+}
 
 // Create the Stack Navigator for Landing and Main App
 export default function AppNavigator() {
@@ -105,11 +105,11 @@ export default function AppNavigator() {
           options={{ headerShown: false }} // Hide header for signup screen
         />
         {/* Main app with tabs */}
-        {/* <Stack.Screen
+        <Stack.Screen
           name="MainApp"
           component={MainTabNavigator}
           options={{ headerShown: false }} // Hide header for main app
-        /> */}
+        />
         {/* <Stack.Screen
           name="InternshipDetails"
           component={InternshipDetails}

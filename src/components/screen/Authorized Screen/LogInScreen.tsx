@@ -1,4 +1,3 @@
-// LoginScreen.tsx
 import React, { useState } from "react";
 import {
   View,
@@ -6,12 +5,25 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  Alert,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 
 const LoginScreen = ({ navigation }: any) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const handleLogin = () => {
+    if (username === "guest" && password === "guest123") {
+      // Navigate to the next screen or show success message
+      Alert.alert("Login Successful", "Welcome back, guest!");
+      navigation.navigate("MainApp");
+      // Example navigation if there's a 'HomeScreen':
+      // navigation.navigate("HomeScreen");
+    } else {
+      // Show error message
+      Alert.alert("Login Failed", "Incorrect username or password.");
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -40,7 +52,7 @@ const LoginScreen = ({ navigation }: any) => {
         <Text style={styles.forgot}>Forgot Password?</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
 
