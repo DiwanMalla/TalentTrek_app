@@ -12,7 +12,7 @@ import MyJobsScreen from "../screen/Tab Screen/MyJobsScreen";
 import LandingPage from "../screen/LandingScreen";
 import LoginScreen from "../screen/Authorized Screen/LogInScreen";
 import SignupScreen from "../screen/Authorized Screen/SignUpScreen";
-// import InternshipDetails from "../Components/Internship/InternshipDetails";
+import InternshipDetails from "../screen/HomeScreen/Internship/Intership Details/InternshipDetails";
 import EventsScreen from "../screen/Tab Screen/EventsScreen";
 import AllInternships from "../screen/HomeScreen/Internship/All Internship/ShowAllInternship";
 // Define types for the Stack Navigator
@@ -109,11 +109,11 @@ export default function AppNavigator() {
           component={MainTabNavigator}
           options={{ headerShown: false }} // Hide header for main app
         />
-        {/* <Stack.Screen
+        <Stack.Screen
           name="InternshipDetails"
           component={InternshipDetails}
           options={{ headerShown: true, title: "Internship Details" }} // Show header for details screen
-        /> */}
+        />
         <Stack.Screen
           name="AllInternships"
           component={AllInternships}

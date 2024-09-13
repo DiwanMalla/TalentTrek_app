@@ -1,10 +1,29 @@
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  ActivityIndicator,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-const InternshipItem = ({ item }: any) => {
+interface InternshipItemProps {
+  item: {
+    job_title: string;
+    employer_name: string;
+    job_city: string;
+    job_offer_expiration_datetime_utc: string;
+    employer_logo?: string;
+    job_id: string;
+  };
+}
+
+const InternshipItem: React.FC<InternshipItemProps> = ({ item }) => {
   const navigation = useNavigation();
+  const [imageError, setImageError] = React.useState(false);
 
   // Function to format date
   const formatDate = (dateString: string | number | Date) => {
@@ -16,19 +35,14 @@ const InternshipItem = ({ item }: any) => {
   return (
     <View style={styles.cardContainer}>
       <View style={styles.header}>
-        {/* Image with fallback */}
         <Image
           source={{
-            uri:
-              item?.employer_logo ||
-              "https://t4.ftcdn.net/jpg/05/05/61/73/360_F_505617309_NN1CW7diNmGXJfMicpY9eXHKV4sqzO5H.jpg",
+            uri: imageError
+              ? "https://t4.ftcdn.net/jpg/05/05/61/73/360_F_505617309_NN1CW7diNmGXJfMicpY9eXHKV4sqzO5H.jpg"
+              : item?.employer_logo,
           }}
           style={styles.logo}
-          onError={(e) => {
-            console.log("Error loading image, fallback to default.");
-            e.target.src =
-              "https://t4.ftcdn.net/jpg/05/05/61/73/360_F_505617309_NN1CW7diNmGXJfMicpY9eXHKV4sqzO5H.jpg"; // Force fallback on error
-          }}
+          onError={() => setImageError(true)}
         />
         <View style={styles.titleContainer}>
           <Text style={styles.title}>{item.job_title}</Text>
@@ -44,7 +58,6 @@ const InternshipItem = ({ item }: any) => {
         <View style={styles.detailItem}>
           <Ionicons name="time-outline" size={20} color="#32CD32" />
           <Text style={styles.detailText}>
-            {" "}
             {formatDate(item.job_offer_expiration_datetime_utc)}
           </Text>
         </View>
@@ -89,7 +102,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     marginRight: 10,
-    borderRadius: 20, // Optional: Add rounded corners to the image
+    borderRadius: 20,
   },
   titleContainer: {
     flex: 1,
