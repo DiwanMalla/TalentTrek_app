@@ -2,7 +2,7 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 
-const LandingPage: React.FC = () => {
+const LandingPage: React.FC = ({ navigation }: any) => {
   return (
     <View style={styles.container}>
       {/* Top section with title */}
@@ -29,7 +29,10 @@ const LandingPage: React.FC = () => {
       </Text>
 
       {/* Button Section */}
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate("LogInScreen")}
+      >
         <Text style={styles.buttonText}>Let's Begin</Text>
       </TouchableOpacity>
 
