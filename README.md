@@ -44,3 +44,79 @@ Welcome to **Interns Store** – the cutting-edge mobile application that connec
 ```bash
    yarn start
 ```
+
+# or
+
+```bash
+   npx expo start
+```
+
+5. Use Expo Go to Test:
+
+Download the Expo Go app on your mobile device.
+Scan the QR code displayed in the Expo CLI using Expo Go to run the app on your device.
+Alternatively, if you're downloading the code folder:
+Download the Code Folder:
+
+**Get the latest version of the code folder from the provided source.**
+Extract the Folder:
+
+Unzip the downloaded folder.
+Navigate to the Project Directory:
+
+bash
+
+1. **Copy Code:**
+   cd path/to/TalentTrek_app
+
+2. **Install Dependencies:**
+
+   ```bash
+     npm install
+   ```
+
+# or
+
+```bash
+   yarn install
+```
+
+3. **Start the Development Server:**
+
+```bash
+    npm start
+```
+
+# or
+
+```bash
+   yarn start
+```
+
+# or
+
+```bash
+   npx expo start
+```
+
+Use Expo Go to Test:
+
+Download the Expo Go app on your mobile device.
+Scan the QR code displayed in the Expo CLI using Expo Go to run the app on your device.
+Features
+AI-Powered Matchmaking: Advanced algorithms to match students with internships based on skills and interests.
+User-Friendly Interface: Intuitive design for easy navigation and application.
+Profile Building Tools: Features to help students build and showcase their profiles.
+Company Dashboards: Tools for companies to manage applications and track intern performance.
+Career Resources: Access to webinars, workshops, and career counseling.
+Contact
+For any queries or support, please reach out to:
+
+Simran Shrestha (CEO/Marketing Manager)
+Diwan Malla (IT Director/Project Manager)
+License
+This project is licensed under the MIT License – see the LICENSE file for details.
+
+This README is for a class assignment and not for commercial purposes.
+
+Feel free to copy and paste this into your README file! If you need any more adjustments, let me know.
