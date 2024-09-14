@@ -13,4 +13,34 @@ Welcome to **Interns Store** – the cutting-edge mobile application that connec
    ```bash
    git clone https://github.com/DiwanMalla/TalentTrek_app
 
-2. Navigate to the Project Directory:
+   ```
+
+2. **Navigate to the Project Directory:**
+
+   ```bash
+   cd TalentTrek_app
+   ```
+
+3. **Install Dependencies:**
+
+   ```bash
+     npm install
+   ```
+
+# or
+
+```bash
+   yarn install
+```
+
+4. **Start the Development Server:**
+
+```bash
+    npm start
+```
+
+# or
+
+```bash
+   yarn start
+```
