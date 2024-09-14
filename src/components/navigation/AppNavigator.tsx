@@ -21,6 +21,8 @@ import AboutUsScreen from "../screen/Profile/Profile Tab/About Us/AboutUs";
 import MembershipScreen from "../screen/Profile/Profile Tab/Membership/MembershipScreen";
 import PaymentScreen from "../screen/Profile/Profile Tab/Membership/PaymentScreen";
 import WebViewScreen from "../screen/Profile/Profile Tab/Membership/Payment Screen/WebViewScreen";
+import HelpScreen from "../screen/Profile/Profile Tab/Help/HelpScreen";
+import SearchResult from "../screen/HomeScreen/SearchBar/SearchResultScreen";
 
 // Define types for the Stack Navigator
 type RootStackParamList = {
@@ -156,6 +158,12 @@ export default function AppNavigator() {
           component={WebViewScreen}
           options={{ headerShown: true, title: "Membership details" }}
         />
+        <Stack.Screen
+          name="HelpScreen"
+          component={HelpScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen name="SearchResult" component={SearchResult} />
       </Stack.Navigator>
     </NavigationContainer>
   );

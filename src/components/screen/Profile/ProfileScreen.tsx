@@ -50,6 +50,10 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
       navigation.navigate("PortfolioScreen");
     } else if (label === "Membership") {
       navigation.navigate("MembershipScreen");
+    } else if (label === "Help & Support") {
+      navigation.navigate("HelpScreen");
+    } else if (label === "Log out") {
+      navigation.navigate("LogInScreen");
     } else {
       console.log(`${label} clicked`);
     }
