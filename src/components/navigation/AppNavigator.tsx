@@ -23,6 +23,7 @@ import PaymentScreen from "../screen/Profile/Profile Tab/Membership/PaymentScree
 import WebViewScreen from "../screen/Profile/Profile Tab/Membership/Payment Screen/WebViewScreen";
 import HelpScreen from "../screen/Profile/Profile Tab/Help/HelpScreen";
 import SearchResult from "../screen/HomeScreen/SearchBar/SearchResultScreen";
+import ServicesScreen from "../screen/Profile/Profile Tab/Service/ServiceScreen";
 
 // Define types for the Stack Navigator
 type RootStackParamList = {
@@ -164,6 +165,11 @@ export default function AppNavigator() {
           options={{ headerShown: false }}
         />
         <Stack.Screen name="SearchResult" component={SearchResult} />
+        <Stack.Screen
+          name="ServicesScreen"
+          component={ServicesScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -6,9 +6,11 @@ import {
   TouchableOpacity,
   StyleSheet,
   Alert,
+  Animated,
+  Easing,
 } from "react-native";
 
-const myJobs = [
+const initialJobs = [
   {
     id: "1",
     title: "Software Engineer",
@@ -31,38 +33,52 @@ const myJobs = [
 ];
 
 const MyJobsScreen = ({ navigation }) => {
+  const [jobs, setJobs] = useState(initialJobs);
+  const fadeAnim = new Animated.Value(1);
+
   const handleJobAction = (jobId, action) => {
-    Alert.alert("Action Taken", `Job ${jobId} marked as ${action}`);
-    // You can also navigate to a different screen or perform other actions here
+    if (action === "Deleted") {
+      Animated.timing(fadeAnim, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true,
+        easing: Easing.ease,
+      }).start(() => {
+        setJobs(jobs.filter((job) => job.id !== jobId));
+        fadeAnim.setValue(1); // Reset animation value
+      });
+    } else {
+      Alert.alert("Action Taken", `Job ${jobId} marked as ${action}`);
+    }
   };
 
   const renderItem = ({ item }) => (
-    <View style={styles.jobItem}>
+    <Animated.View style={[styles.jobItem, { opacity: fadeAnim }]}>
       <Text style={styles.jobTitle}>{item.title}</Text>
       <Text style={styles.company}>{item.company}</Text>
       <Text style={styles.status}>Status: {item.status}</Text>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-          style={styles.button}
+          style={[styles.button, styles.completeButton]}
           onPress={() => handleJobAction(item.id, "Completed")}
         >
           <Text style={styles.buttonText}>Mark as Completed</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.button}
+          style={[styles.button, styles.deleteButton]}
           onPress={() => handleJobAction(item.id, "Deleted")}
         >
           <Text style={styles.buttonText}>Delete</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </Animated.View>
   );
 
   return (
     <View style={styles.container}>
       <Text style={styles.header}>My Jobs</Text>
       <FlatList
-        data={myJobs}
+        data={jobs}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
@@ -71,28 +87,65 @@ const MyJobsScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20 },
-  header: { fontSize: 24, fontWeight: "bold", marginBottom: 20 },
-  jobItem: {
-    backgroundColor: "#f9f9f9",
-    padding: 15,
-    borderRadius: 8,
-    marginBottom: 15,
-    elevation: 2,
+  container: {
+    flex: 1,
+    padding: 20,
+    backgroundColor: "#ffffff", // Set a background color that fits the overall theme
+    marginTop: 40,
   },
-  jobTitle: { fontSize: 18, fontWeight: "bold" },
-  company: { fontSize: 16, color: "#666" },
-  status: { fontSize: 14, color: "#999", marginBottom: 10 },
-  buttonContainer: { flexDirection: "row", justifyContent: "space-between" },
+  header: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "#333333", // Darker color for text
+    marginBottom: 20,
+  },
+  jobItem: {
+    backgroundColor: "#f4f4f4", // Updated background color for modern look
+    padding: 15,
+    borderRadius: 10,
+    marginBottom: 15,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
+    elevation: 3,
+  },
+  jobTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#333333", // Consistent text color
+  },
+  company: {
+    fontSize: 16,
+    color: "#666666", // Subtle color for company name
+  },
+  status: {
+    fontSize: 14,
+    color: "#999999", // Lighter color for status
+    marginBottom: 10,
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
   button: {
-    backgroundColor: "#007bff",
-    padding: 10,
+    paddingVertical: 10,
     borderRadius: 5,
     flex: 1,
     marginHorizontal: 5,
     alignItems: "center",
   },
-  buttonText: { color: "#fff", fontSize: 16 },
+  completeButton: {
+    backgroundColor: "#4caf50", // Green color for completed
+  },
+  deleteButton: {
+    backgroundColor: "#f44336", // Red color for delete
+  },
+  buttonText: {
+    color: "#ffffff", // White text color for contrast
+    fontSize: 16,
+    fontWeight: "bold",
+  },
 });
 
 export default MyJobsScreen;

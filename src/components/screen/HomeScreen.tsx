@@ -5,14 +5,14 @@ import HighlightedEvent from "./HomeScreen/HighlightedEvent";
 import Internships from "./HomeScreen/Internship/Internship";
 import NewInternship from "./HomeScreen/Internship/New Internship/NewInternship";
 import Testimonials from "./HomeScreen/Testinomials/Testinomials";
-import SearchBar from "./HomeScreen/SearchBar/SearchBarScreen"; // Add SearchBar
+import SearchBar from "./HomeScreen/SearchBar/SearchBarScreen";
 import PromotionBanner from "./HomeScreen/PromotionBanner/PromotionBanner";
+import PartnersAndSocial from "./HomeScreen/Partner&Social/PartnersAndSocial"; // Import the new component
 
 const HomeScreen = ({ navigation }: any) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = () => {
-    // Navigate to SearchResult and pass the search query
     navigation.navigate("SearchResult", { searchQuery });
   };
 
@@ -29,6 +29,7 @@ const HomeScreen = ({ navigation }: any) => {
       <Internships />
       <NewInternship />
       <Testimonials />
+      <PartnersAndSocial />
     </ScrollView>
   );
 };

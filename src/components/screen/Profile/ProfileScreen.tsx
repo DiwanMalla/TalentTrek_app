@@ -27,9 +27,11 @@ const profileOptions: ProfileOption[] = [
   { id: "1", label: "Settings", icon: "settings-outline" },
   { id: "2", label: "Portfolio Build", icon: "clipboard-outline" },
   { id: "3", label: "Membership", icon: "card-outline" },
-  { id: "4", label: "Contact Us", icon: "call-outline" },
-  { id: "5", label: "Help & Support", icon: "help-circle" },
-  { id: "6", label: "Log out", icon: "log-out" },
+  { id: "4", label: "Services", icon: "briefcase-outline" }, // Added Services
+  { id: "5", label: "About Us", icon: "information-circle-outline" }, // Added About Us
+  { id: "6", label: "Contact Us", icon: "call-outline" },
+  { id: "7", label: "Help & Support", icon: "help-circle" },
+  { id: "8", label: "Log out", icon: "log-out" },
 ];
 
 const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
@@ -39,7 +41,9 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
   const { profileName, setProfileName } = useContext(ProfileContext);
 
   const handleOptionPress = (label: string) => {
-    if (label === "Contact Us") {
+    if (label === "Services") {
+      navigation.navigate("ServicesScreen"); // Navigate to Services Screen
+    } else if (label === "Contact Us") {
       setModalVisible(true);
     } else if (label === "Edit Profile") {
       setNewName(profileName);
@@ -54,6 +58,8 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
       navigation.navigate("HelpScreen");
     } else if (label === "Log out") {
       navigation.navigate("LogInScreen");
+    } else if (label === "About Us") {
+      navigation.navigate("AboutUsScreen");
     } else {
       console.log(`${label} clicked`);
     }
