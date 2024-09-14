@@ -101,16 +101,22 @@ bash
 
 Use Expo Go to Test:
 
-Features
-•	AI-Powered Matchmaking: Advanced algorithms to match students with internships based on skills and interests.
-•	User-Friendly Interface: Intuitive design for easy navigation and application.
-•	Profile Building Tools: Features to help students build and showcase their profiles.
-•	Company Dashboards: Tools for companies to manage applications and track intern performance.
-•	Career Resources: Access to webinars, workshops, and career counseling.
-Contact
+## Features
+
+- AI-Powered Matchmaking: Advanced algorithms to match students with internships based on skills and interests.
+- User-Friendly Interface: Intuitive design for easy navigation and application.
+- Profile Building Tools: Features to help students build and showcase their profiles.
+- Company Dashboards: Tools for companies to manage applications and track intern performance.
+- Career Resources: Access to webinars, workshops, and career counseling.
+
+## Contact
+
 For any queries or support, please reach out to:
-•	Simran Shrestha (CEO/Marketing Manager)
-•	Diwan Malla (IT Director/Project Manager)
-License
+
+- Simran Shrestha (CEO/Marketing Manager)
+- Diwan Malla (IT Director/Project Manager)
+
+## License
+
 This project is licensed under the MIT License – see the LICENSE file for details.
 Note: This README is for a class assignment and not for commercial purposes.
