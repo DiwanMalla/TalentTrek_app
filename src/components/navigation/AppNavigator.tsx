@@ -18,6 +18,10 @@ import AllInternships from "../screen/HomeScreen/Internship/All Internship/ShowA
 import SettingsScreen from "../screen/Profile/Profile Tab/SettingScreen";
 import PortfolioScreen from "../screen/Profile/Profile Tab/PortfolioBuild/PortfolioScreen";
 import AboutUsScreen from "../screen/Profile/Profile Tab/About Us/AboutUs";
+import MembershipScreen from "../screen/Profile/Profile Tab/Membership/MembershipScreen";
+import PaymentScreen from "../screen/Profile/Profile Tab/Membership/PaymentScreen";
+import WebViewScreen from "../screen/Profile/Profile Tab/Membership/Payment Screen/WebViewScreen";
+
 // Define types for the Stack Navigator
 type RootStackParamList = {
   LandingScreen: undefined;
@@ -125,7 +129,7 @@ export default function AppNavigator() {
         <Stack.Screen
           name="SettingsScreen"
           component={SettingsScreen}
-          options={{ headerShown: true, title: "Internship Details" }}
+          options={{ headerShown: true, title: "Setting" }}
         />
         <Stack.Screen
           name="PortfolioScreen"
@@ -136,6 +140,21 @@ export default function AppNavigator() {
           name="AboutUsScreen"
           component={AboutUsScreen}
           options={{ headerShown: true, title: "About US" }}
+        />
+        <Stack.Screen
+          name="MembershipScreen"
+          component={MembershipScreen}
+          options={{ headerShown: true, title: "Membership details" }}
+        />
+        <Stack.Screen
+          name="PaymentScreen"
+          component={PaymentScreen}
+          options={{ headerShown: true, title: "Membership details" }}
+        />
+        <Stack.Screen
+          name="WebViewScreen"
+          component={WebViewScreen}
+          options={{ headerShown: true, title: "Membership details" }}
         />
       </Stack.Navigator>
     </NavigationContainer>

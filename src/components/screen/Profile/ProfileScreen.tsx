@@ -26,12 +26,10 @@ interface ProfileScreenProps {
 const profileOptions: ProfileOption[] = [
   { id: "1", label: "Settings", icon: "settings-outline" },
   { id: "2", label: "Portfolio Build", icon: "clipboard-outline" },
-  { id: "3", label: "Address", icon: "location-outline" },
-
+  { id: "3", label: "Membership", icon: "card-outline" },
   { id: "4", label: "Contact Us", icon: "call-outline" },
   { id: "5", label: "Help & Support", icon: "help-circle" },
-  { id: "6", label: "About Us", icon: "information-circle-outline" }, // New option
-  { id: "7", label: "Log out", icon: "log-out" },
+  { id: "6", label: "Log out", icon: "log-out" },
 ];
 
 const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
@@ -50,9 +48,8 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
       navigation.navigate("SettingsScreen");
     } else if (label === "Portfolio Build") {
       navigation.navigate("PortfolioScreen");
-    } else if (label === "About Us") {
-      // Navigate to About Us
-      navigation.navigate("AboutUsScreen");
+    } else if (label === "Membership") {
+      navigation.navigate("MembershipScreen");
     } else {
       console.log(`${label} clicked`);
     }
