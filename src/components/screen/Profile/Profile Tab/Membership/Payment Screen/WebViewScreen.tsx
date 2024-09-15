@@ -49,6 +49,7 @@ const PaymentScreen = ({ route, navigation }) => {
       });
 
       const paymentResult = await response.json();
+
       if (paymentResult && paymentResult.links) {
         const approvalUrl = paymentResult.links.find(
           (link) => link.rel === "approval_url"
@@ -56,7 +57,8 @@ const PaymentScreen = ({ route, navigation }) => {
         // Open the approval URL in the default browser
         Linking.openURL(approvalUrl);
       } else {
-        Alert.alert("Error", "Payment initiation failed.");
+        console.log(paymentResult);
+        Alert.alert("Error", `Payment initiation failed. `);
       }
     } catch (error) {
       console.error("Payment Error: ", error);

@@ -28,7 +28,7 @@ const PaymentScreen = ({ route, navigation }) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer A21AAJUFw3nqS1amOZaWbtElQaXJB9IQutoGGDwkz4FlR7-tdzU0Dqu8sDjC2VhuyDdBpN4pH39wNJq7ROwT6DuEn_uxkGEaw`,
+          Authorization: `Bearer A21AAKJeeW1ualpj_-g0Yw-IrLkwtIDr9ar3R_cPD4Og-l5k9fDB6c48HJ2L9NxGbPfvxz65l1AVfiNzi9HnahqOYQ98tGGqA`,
         },
         body: JSON.stringify({
           intent: "sale",
@@ -52,6 +52,7 @@ const PaymentScreen = ({ route, navigation }) => {
       });
 
       const paymentResult = await response.json();
+      console.log(paymentResult);
       if (paymentResult && paymentResult.links) {
         const approvalUrl = paymentResult.links.find(
           (link) => link.rel === "approval_url"
