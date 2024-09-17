@@ -152,12 +152,12 @@ export default function AppNavigator() {
         <Stack.Screen
           name="PaymentScreen"
           component={PaymentScreen}
-          options={{ headerShown: true, title: "Membership details" }}
+          options={{ headerShown: true, title: "Payment" }}
         />
         <Stack.Screen
           name="WebViewScreen"
           component={WebViewScreen}
-          options={{ headerShown: true, title: "Membership details" }}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="HelpScreen"

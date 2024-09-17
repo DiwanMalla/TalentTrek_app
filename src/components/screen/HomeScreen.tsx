@@ -25,11 +25,12 @@ const HomeScreen = ({ navigation }: any) => {
         onSearch={handleSearch}
       />
       <HighlightedEvent />
-      <PromotionBanner />
+
       <Internships />
       <NewInternship />
       <Testimonials />
       <PartnersAndSocial />
+      <PromotionBanner />
     </ScrollView>
   );
 };

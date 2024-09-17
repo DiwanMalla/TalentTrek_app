@@ -4,6 +4,11 @@
 
 Welcome to **Interns Store** – the cutting-edge mobile application that connects students with fantastic internship opportunities! 🚀 Designed to bridge the gap between ambitious students and forward-thinking companies, our platform uses advanced AI algorithms to match students with internships that perfectly align with their skills and interests. Our mission is to enhance employability and provide invaluable experience.
 
+## LogIn Details
+
+**UserName : guest**
+**Password : guest123**
+
 ## Installation
 
 ### To Get Started:

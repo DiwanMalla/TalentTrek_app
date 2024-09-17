@@ -28,7 +28,7 @@ const PaymentScreen = ({ route, navigation }) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer A21AAKJeeW1ualpj_-g0Yw-IrLkwtIDr9ar3R_cPD4Og-l5k9fDB6c48HJ2L9NxGbPfvxz65l1AVfiNzi9HnahqOYQ98tGGqA`,
+          Authorization: `Bearer A21AAKXI8L9mXtgajdO-c-ggNmu2fcTrw-SjUdChV9uzA17SSflZ5MJAA_kJzajgTpf54_wCRhohJ9iekSTB8996eu9jiXZbQ`,
         },
         body: JSON.stringify({
           intent: "sale",
